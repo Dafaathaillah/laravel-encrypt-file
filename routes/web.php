@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ListDataAdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.master');
 });
+
+Route::get('/listdataadmin', [ListDataAdminController::class, 'index'])->name('listdata.admin');
+Route::post('/listdataadmin', [ListDataAdminController::class, 'save'])->name('listdataadm.save');
