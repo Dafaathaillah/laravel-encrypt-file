@@ -27,7 +27,7 @@ class ListDataAdminController extends Controller
         $validateData['user_id'] = $user;
         $validateData['image_encrypt'] = $req->file('image_encrypt')->store('image-encrypt');
 
-        $data = ListData::updateOrCreate(['nama_pemohon' => $req->id], $validateData);
+        $data = ListData::updateOrCreate(['id' => $req->id], $validateData);
         // if (empty($req->id)) {
         //     $data = ListData::create($validateData);
         // } else {
