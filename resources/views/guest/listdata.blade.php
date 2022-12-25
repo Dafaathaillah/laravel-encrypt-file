@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.masterguest')
 
 @section('breadcrumb')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -11,12 +11,12 @@
 @endsection
 
 @section('content')
-    <button type="button" class="btn btn-primary mb-3" id="btnAdd">
+    {{-- <button type="button" class="btn btn-primary mb-3" id="btnAdd">
         Tambah List Data
-    </button>
+    </button> --}}
     <div class="card mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">DataTables with Hover</h6>
+            <h6 class="m-0 font-weight-bold text-primary">List Data With Encrypt</h6>
         </div>
         <div class="table-responsive p-3">
             <table class="table align-items-center table-flush table-hover" id="table-data">
@@ -44,10 +44,8 @@
                             </td>
                             <td>{{ Str::limit(Crypt::encryptString($lsdta->alamat), 10) }}</td>
                             <td>
-                                <a href="javascript:void(0)" id="btnEdit" data-id="{{ $lsdta->id }}"
-                                    class="btn btn-warning btn-sm shadow">Edit</a>
                                 <a href="javascript:void(0)" id="btnDelete" data-id="#"
-                                    class="btn btn-danger btn-sm shadow">Delete</a>
+                                    class="btn btn-danger btn-sm shadow"><i class="fas fa-download mr-2"></i>Download</a>
                             </td>
                         </tr>
                     @endforeach

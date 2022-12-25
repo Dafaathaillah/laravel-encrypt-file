@@ -32,6 +32,7 @@ class ListDataAdminController extends Controller
         //     $data = ListData::create($validateData);
         // } else {
         //     $data = ListData::firstWhere($req->id)->update($validateData);
+        //     $data = ListData::where('id', $req->id)->update($validateData);
         // }
         // dd($data);
 
@@ -41,5 +42,12 @@ class ListDataAdminController extends Controller
     public function show(ListData $listdata)
     {
         return response()->json($listdata->load(['usr']));
+    }
+
+    public function destroy(ListData $listdata)
+    {
+        // Storage::delete($banner->img);
+        $data = $listdata->delete();
+        return response()->json($data);
     }
 }

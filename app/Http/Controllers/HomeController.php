@@ -24,9 +24,11 @@ class HomeController extends Controller
     public function index()
     {
         if(auth()->user()->role == 'admin'){
-            return redirect('listdataadmin');
+            return redirect('listdata');
+        }elseif(auth()->user()->role == 'user'){
+            return redirect('listdata');
         }else{
-            // 
+            return redirect('listdataguest');
         }
     }
 }

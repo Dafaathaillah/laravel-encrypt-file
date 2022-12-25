@@ -51,7 +51,7 @@
                                 <td>
                                     <a href="javascript:void(0)" id="btnEdit" data-id="{{ $lsdta->id }}"
                                         class="btn btn-warning btn-sm shadow">Edit</a>
-                                    <a href="javascript:void(0)" id="btnDelete" data-id="#"
+                                    <a href="javascript:void(0)" id="btnDelete" data-id="{{ $lsdta->id }}"
                                         class="btn btn-danger btn-sm shadow">Delete</a>
                                 </td>
                             </tr>
@@ -75,7 +75,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="form-data">
-                        {{-- <input type="hidden" id="id"> --}}
+                        <input type="hidden" id="id">
                         <div class="form-group">
                             <label for="nama_pemohon">Nama Pemohon</label>
                             <input type="text" class="form-control" name="nama_pemohon" id="nama_pemohon"
@@ -97,8 +97,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btnCancel" class="btn btn-outline-primary"
-                        data-dismiss="modal">Close</button>
+                    <button type="button" id="btnCancel" class="btn btn-outline-primary">Close</button>
                     <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
@@ -111,7 +110,7 @@
             $('body').on('click', '#btnAdd', function() {
                 $('#title-modal').html('Form Tambah Post');
                 document.getElementById("form-data").reset();
-                $('#btnSave').html('Save changes')
+                $('#btnSave').html('Save')
                 $('#modal-data').modal('show');
             });
         });
@@ -130,9 +129,11 @@
                 if (typeof(files) == "undefined") {
                     files = '';
                 }
+                fdata.append('id', $('#id').val());
                 fdata.append('nama_pemohon', $("#nama_pemohon").val());
                 fdata.append('alamat', $("#alamat").val());
                 fdata.append('image_encrypt', files);
+                // console.log(fdata);
                 $.ajax({
                     data: fdata,
                     url: "{{ route('listdata.save') }}",
@@ -143,13 +144,13 @@
                     cache: false,
                     success: function(data) {
                         console.log(data);
-                        $('#btnSave').html('Save changes');
+                        $('#btnSave').html('Save');
                         $('#modal-data').modal('hide');
                         window.location.href = "";
                     },
                     error: function(data) {
                         console.log(data);
-                        $('#btnSave').html('Save changes');
+                        $('#btnSave').html('Save');
 
                     }
                 });
@@ -166,7 +167,7 @@
                     $('#title-modal').html('Ubah Data')
 
                     console.log(url);
-                    // document.getElementById("id").value = response.id;
+                    document.getElementById("id").value = response.id;
                     document.getElementById("nama_pemohon").value = response.nama_pemohon;
                     document.getElementById("alamat").value = response.alamat;
 
@@ -179,6 +180,26 @@
                     $('#modal-data').modal('show');
                 })
 
+            });
+        });
+
+        $(document).ready(function() {
+            $('body').on('click', '#btnDelete', function() {
+                var dataId = $(this).attr("data-id");
+                var data = dataId.split('#');
+                var url = "{{ route('listdata.destroy', ['listdata' => ':id']) }}"
+                url = url.replace(':id', data[0]);
+                $.ajax({
+                    url: url,
+                    type: "DELETE",
+                    dataType: 'json',
+                    success: function(data) {
+                        window.location.href = "";
+                    },
+                    error: function(data) {
+                        console.log(url);
+                    }
+                });
             });
         });
 

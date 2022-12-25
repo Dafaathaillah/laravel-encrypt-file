@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ListDataAdminController;
+use App\Http\Controllers\ListDataGuestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,13 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.master');
-});
+Route::get('/listdata', [ListDataAdminController::class, 'index'])->name('listdata.admin')->middleware('checkRole:admin,user');
+Route::post('/listdata', [ListDataAdminController::class, 'save'])->name('listdata.save')->middleware('checkRole:admin,user');
+Route::get('/listdata/{listdata:id}', [ListDataAdminController::class, 'show'])->name('listdata.show')->middleware('checkRole:admin,user');
+Route::delete('listdata/{listdata:id}', [ListDataAdminController::class, 'destroy'])->name('listdata.destroy')->middleware('checkRole:admin,user');
+Route::get('/', [ListDataGuestController::class, 'index'])->name('listdata.guest');
 
-Route::get('/listdata', [ListDataAdminController::class, 'index'])->name('listdata.admin');
-Route::post('/listdata', [ListDataAdminController::class, 'save'])->name('listdata.save');
-Route::get('/listdata/{listdata:id}', [ListDataAdminController::class, 'show'])->name('listdata.show');
 
 Auth::routes();
 

@@ -48,7 +48,14 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancel</button>
-                  <a href="login.html" class="btn btn-primary">Logout</a>
+                  <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                     </a>
+
+                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                     </form>
                 </div>
               </div>
             </div>
