@@ -16,7 +16,7 @@
     <div class="sidebar-heading">
       Features
     </div>
-    <li class="nav-item {{ (request()->segment(1) == 'listdataadmin') ? 'active' : '' }}">
+    <li class="nav-item {{ (request()->segment(1) == 'listdata') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('listdata.admin') }}">
           <i class="fas fa-fw fa-list-alt"></i>
           <span>List Data</span>
