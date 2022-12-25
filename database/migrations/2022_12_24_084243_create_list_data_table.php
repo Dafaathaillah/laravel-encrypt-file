@@ -16,8 +16,19 @@ return new class extends Migration
         Schema::create('list_data', function (Blueprint $table) {
             $table->id();
             $table->string('nama_pemohon');
+            $table->string('tanggal_pengajuan');
             $table->string('alamat');
             $table->string('image_encrypt')->nullable();
+            $table->string('kota');
+            $table->string('provinsi');
+            $table->string('fax');
+            $table->string('email');
+            $table->string('kodepos');
+            $table->string('warna');
+            $table->longText('deskripsi');
+            $table->string('merk');
+            $table->string('kelas');
+            $table->string('jenis');
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')

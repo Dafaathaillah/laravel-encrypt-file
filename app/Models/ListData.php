@@ -13,7 +13,18 @@ class ListData extends Model
     protected $fillable = [ 
         "image_encrypt",
         "nama_pemohon",
+        "email",
+        "tanggal_pengajuan",
         "alamat",
+        "kota",
+        "provinsi",
+        "fax",
+        "kodepos",
+        "warna",
+        "deskripsi",
+        "merk",
+        "kelas",
+        "jenis",
         "user_id",
     ];
     public function usr()

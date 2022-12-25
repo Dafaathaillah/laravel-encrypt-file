@@ -11,9 +11,11 @@
 @endsection
 
 @section('content')
-    <button type="button" class="btn btn-primary mb-3" id="btnAdd">
-        Tambah List Data
-    </button>
+    @if (auth()->user()->role == 'user')
+        <button type="button" class="btn btn-primary mb-3" id="btnAdd">
+            Tambah List Data
+        </button>
+    @endif
     <div class="card mb-4">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <h6 class="m-0 font-weight-bold text-primary">List Data</h6>
@@ -49,10 +51,21 @@
                                 </td>
                                 <td>{{ Str::limit($lsdta->alamat, 10) }}</td>
                                 <td>
-                                    <a href="javascript:void(0)" id="btnEdit" data-id="{{ $lsdta->id }}"
-                                        class="btn btn-warning btn-sm shadow">Edit</a>
-                                    <a href="javascript:void(0)" id="btnDelete" data-id="{{ $lsdta->id }}"
-                                        class="btn btn-danger btn-sm shadow">Delete</a>
+                                    @if (auth()->user()->role == 'user')
+                                        <a href="javascript:void(0)" id="btnEdit" data-id="{{ $lsdta->id }}"
+                                            class="btn btn-info btn-sm shadow">Detail</a>
+                                        <a href="javascript:void(0)" id="btnDownload" data-id="#"
+                                            class="btn btn-danger btn-sm shadow"><i
+                                                class="fas fa-download mr-2"></i>Download</a>
+                                    @else
+                                        <a href="javascript:void(0)" id="btnEdit" data-id="{{ $lsdta->id }}"
+                                            class="btn btn-success btn-sm shadow">Detail</a>
+                                        <a href="javascript:void(0)" id="btnDownload" data-id="#"
+                                            class="btn btn-info btn-sm shadow"><i
+                                                class="fas fa-download mr-2"></i>Download</a>
+                                        <a href="javascript:void(0)" id="btnDelete" data-id="{{ $lsdta->id }}"
+                                            class="btn btn-danger btn-sm shadow">Delete</a>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach
@@ -76,29 +89,103 @@
                 <div class="modal-body">
                     <form id="form-data">
                         <input type="hidden" id="id">
-                        <div class="form-group">
-                            <label for="nama_pemohon">Nama Pemohon</label>
-                            <input type="text" class="form-control" name="nama_pemohon" id="nama_pemohon"
-                                aria-describedby="nama_pemohon" placeholder="Nama Pemohon">
+                        <div class="row">
+                            <div class="form-group col-lg-6" id="simple-date1">
+                                <label for="tanggal_pengajuan">Tanggal Pengajuan</label>
+                                <div class="input-group date">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" value="2022/12/12" id="tanggal_pengajuan">
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="nama_pemohon">Nama Pemohon</label>
+                                <input type="text" class="form-control" name="nama_pemohon" id="nama_pemohon"
+                                    aria-describedby="nama_pemohon" placeholder="ex: mr.jacob...">
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="alamat">Alamat</label>
-                            <input type="text" class="form-control" name="alamat" id="alamat" placeholder="alamat">
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="alamat">Alamat</label>
+                                <input type="text" class="form-control" name="alamat" id="alamat"
+                                    placeholder="ex: jl. Candi...">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <img id="img-preview" class="img-fluid mb-3 mt-2 col-sm-5 rounded">
+                                <div class="custom-file">
+                                    {{-- <input type="hidden" id="old_image_encrypt"> --}}
+                                    <input type="file" class="custom-file-input" name="image_encrypt" id="image_encrypt"
+                                        onchange="previewImage()">
+                                    <label class="custom-file-label" for="image">Upload Logo</label>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <img id="img-preview" class="img-fluid mb-3 mt-2 col-sm-5 rounded">
-                            <div class="custom-file">
-                                {{-- <input type="hidden" id="old_image_encrypt"> --}}
-                                <input type="file" class="custom-file-input" name="image_encrypt" id="image_encrypt"
-                                    onchange="previewImage()">
-                                <label class="custom-file-label" for="image">Choose file</label>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="kota">Kab/Kota</label>
+                                <input type="text" class="form-control" name="kota" id="kota"
+                                    aria-describedby="kota" placeholder="ex: Surabaya">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="provinsi">Provinsi</label>
+                                <input type="text" class="form-control" name="provinsi" id="provinsi"
+                                    aria-describedby="provinsi" placeholder="ex:Jawa Timur">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="fax">Tel/fax</label>
+                                <input type="text" class="form-control" name="fax" id="fax"
+                                    aria-describedby="fax" placeholder="ex: 08323...">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" name="email" id="email"
+                                    aria-describedby="email" readonly value="{{ $user->email }}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="kodepos">kode pos</label>
+                                <input type="text" class="form-control" name="kodepos" id="kodepos"
+                                    aria-describedby="kodepos" placeholder="ex: 72171">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="warna">Warna dalam Merk</label>
+                                <input type="text" class="form-control" name="warna" id="warna"
+                                    aria-describedby="warna" placeholder="ex: Biru">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="kelas">Kelas</label>
+                                <input type="text" class="form-control" name="kelas" id="kelas"
+                                    aria-describedby="kelas" placeholder="ex: 1...">
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="jenis">Jenis Barang</label>
+                                <input type="text" class="form-control" name="jenis" id="jenis"
+                                    aria-describedby="jenis" placeholder="ex: jenis1...">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-lg-6">
+                                <label for="deskripsi">Deskripsi Produk</label>
+                                <textarea class="form-control" name="deskripsi" id="deskripsi" aria-describedby="deskripsi"
+                                    placeholder="ex: barang bagus..." name="deskripsi" id="" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                <label for="merk">Nama Merk</label>
+                                <input type="text" class="form-control" name="merk" id="merk"
+                                    aria-describedby="merk" placeholder="ex: Sanco">
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btnCancel" class="btn btn-outline-primary">Close</button>
-                    <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
+                    {{-- <button type="button" id="btnSave" class="btn btn-primary">Save changes</button> --}}
                 </div>
             </div>
         </div>
@@ -132,6 +219,17 @@
                 fdata.append('id', $('#id').val());
                 fdata.append('nama_pemohon', $("#nama_pemohon").val());
                 fdata.append('alamat', $("#alamat").val());
+                fdata.append('tanggal_pengajuan', $("#tanggal_pengajuan").val());
+                fdata.append('kota', $("#kota").val());
+                fdata.append('provinsi', $("#provinsi").val());
+                fdata.append('fax', $("#fax").val());
+                fdata.append('email', $("#email").val());
+                fdata.append('kodepos', $("#kodepos").val());
+                fdata.append('warna', $("#warna").val());
+                fdata.append('kelas', $("#kelas").val());
+                fdata.append('jenis', $("#jenis").val());
+                fdata.append('deskripsi', $("#deskripsi").val());
+                fdata.append('merk', $("#merk").val());
                 fdata.append('image_encrypt', files);
                 // console.log(fdata);
                 $.ajax({
@@ -164,11 +262,22 @@
                 var url = "{{ route('listdata.show', ['listdata' => ':id']) }}";
                 url = url.replace(':id', ids);
                 $.get(url, function(response) {
-                    $('#title-modal').html('Ubah Data')
+                    $('#title-modal').html('Detail Data')
 
                     console.log(url);
                     document.getElementById("id").value = response.id;
                     document.getElementById("nama_pemohon").value = response.nama_pemohon;
+                    document.getElementById("tanggal_pengajuan").value = response.tanggal_pengajuan;
+                    document.getElementById("kota").value = response.kota;
+                    document.getElementById("provinsi").value = response.provinsi;
+                    document.getElementById("fax").value = response.fax;
+                    document.getElementById("email").value = response.email;
+                    document.getElementById("kodepos").value = response.kodepos;
+                    document.getElementById("warna").value = response.warna;
+                    document.getElementById("deskripsi").value = response.deskripsi;
+                    document.getElementById("merk").value = response.merk;
+                    document.getElementById("kelas").value = response.kelas;
+                    document.getElementById("jenis").value = response.jenis;
                     document.getElementById("alamat").value = response.alamat;
 
                     document.getElementById("image_encrypt").value = '';

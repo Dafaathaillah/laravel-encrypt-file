@@ -44,7 +44,7 @@
                             </td>
                             <td>{{ Str::limit(Crypt::encryptString($lsdta->alamat), 10) }}</td>
                             <td>
-                                <a href="javascript:void(0)" id="btnDelete" data-id="#"
+                                <a href="javascript:void(0)" id="btnDownload" data-id="#"
                                     class="btn btn-danger btn-sm shadow"><i class="fas fa-download mr-2"></i>Download</a>
                             </td>
                         </tr>
