@@ -18,5 +18,10 @@ Route::get('/', function () {
     return view('layouts.master');
 });
 
-Route::get('/listdataadmin', [ListDataAdminController::class, 'index'])->name('listdata.admin');
-Route::post('/listdataadmin', [ListDataAdminController::class, 'save'])->name('listdataadm.save');
+Route::get('/listdata', [ListDataAdminController::class, 'index'])->name('listdata.admin');
+Route::post('/listdata', [ListDataAdminController::class, 'save'])->name('listdata.save');
+Route::get('/listdata/{listdata:id}', [ListDataAdminController::class, 'show'])->name('listdata.show');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

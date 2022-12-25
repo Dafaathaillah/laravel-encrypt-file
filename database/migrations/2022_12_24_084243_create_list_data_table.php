@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('list_datas', function (Blueprint $table) {
+        Schema::create('list_data', function (Blueprint $table) {
             $table->id();
-            $table->string('namapemohon');
+            $table->string('nama_pemohon');
             $table->string('alamat');
-            $table->string('image')->nullable();
+            $table->string('image_encrypt')->nullable();
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('user_id')
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('list_datas');
+        Schema::dropIfExists('list_data');
     }
 };
