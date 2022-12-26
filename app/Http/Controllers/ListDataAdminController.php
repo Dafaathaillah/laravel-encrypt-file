@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use PDF;
 
 class ListDataAdminController extends Controller
 {
@@ -70,4 +71,12 @@ class ListDataAdminController extends Controller
         $data = $listdata->delete();
         return response()->json($data);
     }
+
+    public function pdf($id){
+        $show = ListData::find($id);
+        $pdf = PDF::loadview('admin.pdf', compact('show'));
+        return $pdf->stream();
+        // return view('admin.pdf', compact('show'));
+    }
+    // public function pdfmarketing($id)
 }

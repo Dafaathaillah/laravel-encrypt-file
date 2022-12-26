@@ -54,13 +54,13 @@
                                     @if (auth()->user()->role == 'user')
                                         <a href="javascript:void(0)" id="btnEdit" data-id="{{ $lsdta->id }}"
                                             class="btn btn-info btn-sm shadow">Detail</a>
-                                        <a href="javascript:void(0)" id="btnDownload" data-id="#"
-                                            class="btn btn-danger btn-sm shadow"><i
+                                        <a href="{{ route('download.pdf', $lsdta->id) }}"
+                                            class="btn btn-danger btn-sm shadow" target="_blank"><i
                                                 class="fas fa-download mr-2"></i>Download</a>
                                     @else
                                         <a href="javascript:void(0)" id="btnEdit" data-id="{{ $lsdta->id }}"
                                             class="btn btn-success btn-sm shadow">Detail</a>
-                                        <a href="javascript:void(0)" id="btnDownload" data-id="#"
+                                        <a href="{{ route('download.pdf', $lsdta->id) }}"
                                             class="btn btn-info btn-sm shadow"><i
                                                 class="fas fa-download mr-2"></i>Download</a>
                                         <a href="javascript:void(0)" id="btnDelete" data-id="{{ $lsdta->id }}"
@@ -142,7 +142,7 @@
                             <div class="form-group col-lg-6">
                                 <label for="email">Email</label>
                                 <input type="text" class="form-control" name="email" id="email"
-                                    aria-describedby="email" readonly value="{{ $user->email }}">
+                                    aria-describedby="email">
                             </div>
                         </div>
                         <div class="row">
@@ -185,7 +185,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btnCancel" class="btn btn-outline-primary">Close</button>
-                    {{-- <button type="button" id="btnSave" class="btn btn-primary">Save changes</button> --}}
+                    <button type="button" id="btnSave" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
@@ -197,7 +197,7 @@
             $('body').on('click', '#btnAdd', function() {
                 $('#title-modal').html('Form Tambah Post');
                 document.getElementById("form-data").reset();
-                $('#btnSave').html('Save')
+                $('#btnSave').html('Save').show()
                 $('#modal-data').modal('show');
             });
         });
@@ -242,7 +242,7 @@
                     cache: false,
                     success: function(data) {
                         console.log(data);
-                        $('#btnSave').html('Save');
+                        $('#btnSave').html('Save').show();
                         $('#modal-data').modal('hide');
                         window.location.href = "";
                     },
@@ -262,31 +262,30 @@
                 var url = "{{ route('listdata.show', ['listdata' => ':id']) }}";
                 url = url.replace(':id', ids);
                 $.get(url, function(response) {
-                    $('#title-modal').html('Detail Data')
-
-                    console.log(url);
-                    document.getElementById("id").value = response.id;
-                    document.getElementById("nama_pemohon").value = response.nama_pemohon;
-                    document.getElementById("tanggal_pengajuan").value = response.tanggal_pengajuan;
-                    document.getElementById("kota").value = response.kota;
-                    document.getElementById("provinsi").value = response.provinsi;
-                    document.getElementById("fax").value = response.fax;
-                    document.getElementById("email").value = response.email;
-                    document.getElementById("kodepos").value = response.kodepos;
-                    document.getElementById("warna").value = response.warna;
-                    document.getElementById("deskripsi").value = response.deskripsi;
-                    document.getElementById("merk").value = response.merk;
-                    document.getElementById("kelas").value = response.kelas;
-                    document.getElementById("jenis").value = response.jenis;
-                    document.getElementById("alamat").value = response.alamat;
-
-                    document.getElementById("image_encrypt").value = '';
-                    const imgPreview = document.getElementById("img-preview");
-                    imgPreview.style.display = 'block';
-                    imgPreview.src = "{{ asset('storage') }}/" + response.image_encrypt;
-
-                    $('#btnSave').html('Save changes')
-                    $('#modal-data').modal('show');
+                    $('#title-modal').html('Detail Data')                       
+                        console.log(url);
+                        document.getElementById("id").value = response.id;
+                        document.getElementById("nama_pemohon").value = response.nama_pemohon;
+                        document.getElementById("tanggal_pengajuan").value = response.tanggal_pengajuan;
+                        document.getElementById("kota").value = response.kota;
+                        document.getElementById("provinsi").value = response.provinsi;
+                        document.getElementById("fax").value = response.fax;
+                        document.getElementById("email").value = response.email;
+                        document.getElementById("kodepos").value = response.kodepos;
+                        document.getElementById("warna").value = response.warna;
+                        document.getElementById("deskripsi").value = response.deskripsi;
+                        document.getElementById("merk").value = response.merk;
+                        document.getElementById("kelas").value = response.kelas;
+                        document.getElementById("jenis").value = response.jenis;
+                        document.getElementById("alamat").value = response.alamat;
+    
+                        document.getElementById("image_encrypt").value = '';
+                        const imgPreview = document.getElementById("img-preview");
+                        imgPreview.style.display = 'block';
+                        imgPreview.src = "{{ asset('storage') }}/" + response.image_encrypt;
+    
+                        $('#btnSave').hide();
+                        $('#modal-data').modal('show');
                 })
 
             });
