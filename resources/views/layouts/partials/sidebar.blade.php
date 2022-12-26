@@ -8,8 +8,8 @@
         </a>
         <hr class="sidebar-divider my-0">
         @if (auth()->user()->role == 'admin')
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">
+            <li class="nav-item {{ request()->segment(1) == 'dashboard' ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('dashboard.admin') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>

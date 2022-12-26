@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ListDataAdminController;
 use App\Http\Controllers\ListDataGuestController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/pdf', function () {
 //     return view('admin.pdf');
 // });
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin')->middleware('checkRole:admin');
 
 Route::get('/listdata', [ListDataAdminController::class, 'index'])->name('listdata.admin')->middleware('checkRole:admin,user');
 Route::post('/listdata', [ListDataAdminController::class, 'save'])->name('listdata.save')->middleware('checkRole:admin,user');
