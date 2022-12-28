@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/pdf', function () {
 //     return view('admin.pdf');
 // });
-Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
+Route::group(['checkRole' => 'admin',  'middleware' => 'auth'], function()
 {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.admin');
     
@@ -29,7 +29,7 @@ Route::group(['prefix' => 'admin',  'middleware' => 'auth'], function()
 Route::get('listdownload/{id}/cetak_pdf', [ListDataAdminController::class, 'pdf'])->name('download.pdf');
 
 });
-Route::group(['prefix' => 'user',  'middleware' => 'auth'], function()
+Route::group(['checkRole' => 'user',  'middleware' => 'auth'], function()
 {    
     Route::get('/listdata', [ListDataAdminController::class, 'index'])->name('listdata.admin');
     Route::post('/listdata', [ListDataAdminController::class, 'save'])->name('listdata.save');
