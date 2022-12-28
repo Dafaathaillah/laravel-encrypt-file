@@ -18,7 +18,7 @@
                 <span class="pull-left">Nama Pemohon</span>
             </div>
             <div class="clearfix col-md-6">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->nama_pemohon), 25) }}</strong>
+                <strong class="pull-right">{{ $show->nama_pemohon }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -26,7 +26,7 @@
                 <span class="pull-left">Tanggal Pengajuan</span>
             </div>
             <div class="clearfix col-md-6">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->tanggal_pengajuan), 25) }}</strong>
+                <strong class="pull-right">{{ $show->tanggal_pengajuan }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -34,7 +34,7 @@
                 <span class="pull-left">Alamat</span>
             </div>
             <div class="clearfix col-md-6 ">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->alamat), 25) }}</strong>
+                <strong class="pull-right">{{ $show->alamat }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -44,7 +44,7 @@
             <div class="clearfix col-md-6 ">
                 {{-- <strong class="pull-right">{{ strtoupper($show->nama_pemohon) }}</strong> --}}
                 {{-- <img src="{{ storage_path($show->image_encrypt) }}" alt=""> --}}
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->image_encrypt), 25) }}</strong>
+                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->image_encrypt ), 25) }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -52,7 +52,7 @@
                 <span class="pull-left">Kab/Kota</span>
             </div>
             <div class="clearfix col-md-6 ">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->kota), 25) }}</strong>
+                <strong class="pull-right">{{ $show->kota }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -60,7 +60,7 @@
                 <span class="pull-left">Provinsi</span>
             </div>
             <div class="clearfix col-md-6 ">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->provinsi), 25) }}</strong>
+                <strong class="pull-right">{{ $show->provinsi }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -68,7 +68,7 @@
                 <span class="pull-left">Tel/Fax</span>
             </div>
             <div class="clearfix col-md-6 ">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->fax), 25) }}</strong>
+                <strong class="pull-right">{{ $show->fax }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -76,7 +76,7 @@
                 <span class="pull-left">Email</span>
             </div>
             <div class="clearfix col-md-6 ">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->email), 25) }}</strong>
+                <strong class="pull-right">{{ $show->email }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -84,7 +84,7 @@
                 <span class="pull-left">Kode Pos</span>
             </div>
             <div class="clearfix col-md-6 ">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->kodepos), 25) }}</strong>
+                <strong class="pull-right">{{ $show->kodepos }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -92,7 +92,7 @@
                 <span class="pull-left">Warna dalam Merk</span>
             </div>
             <div class="clearfix col-md-6 ">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->warna ), 25)}}</strong>
+                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->warna ), 25) }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -100,7 +100,7 @@
                 <span class="pull-left">Deskripsi</span>
             </div>
             <div class="clearfix col-md-6 ">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->deskripsi), 25) }}</strong>
+                <strong class="pull-right">{{ $show->deskripsi }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -116,7 +116,7 @@
                 <span class="pull-left">Kelas</span>
             </div>
             <div class="clearfix col-md-6 ">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->kelas), 25) }}</strong>
+                <strong class="pull-right">{{ $show->kelas }}</strong>
             </div>
          </div>
          <div class="row mt-3">
@@ -124,7 +124,7 @@
                 <span class="pull-left">Jenis</span>
             </div>
             <div class="clearfix col-md-6 ">
-                <strong class="pull-right">{{ Str::limit(Crypt::encryptString($show->jenis), 25) }}</strong>
+                <strong class="pull-right">{{ $show->jenis }}</strong>
             </div>
          </div>
         </div>

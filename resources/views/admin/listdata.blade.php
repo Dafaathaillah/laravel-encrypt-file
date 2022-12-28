@@ -21,7 +21,7 @@
             <h6 class="m-0 font-weight-bold text-primary">List Data</h6>
         </div>
         <div class="table-responsive p-3">
-            <table class="table align-items-center table-flush table-hover" id="table-data">
+            <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                 <thead class="thead-light">
                     <tr>
                         <th>No</th>

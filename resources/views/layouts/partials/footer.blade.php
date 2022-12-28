@@ -3,7 +3,7 @@
     <div class="container my-auto">
       <div class="copyright text-center my-auto">
         <span>copyright &copy; <script> document.write(new Date().getFullYear()); </script> - developed by
-          <b><a href="https://indrijunanda.gitlab.io/" target="_blank">Ananda Salsabila</a></b>
+          <b><a href="#" target="_blank">Developer Santai</a></b>
         </span>
       </div>
     </div>

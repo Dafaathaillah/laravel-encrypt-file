@@ -74,9 +74,9 @@ class ListDataAdminController extends Controller
 
     public function pdf($id){
         $show = ListData::find($id);
-        $pdf = PDF::loadview('admin.pdf', compact('show'));
-        return $pdf->stream();
-        // return view('admin.pdf', compact('show'));
+        // $pdf = PDF::loadview('admin.pdf', compact('show'));
+        // return $pdf->stream();
+        return view('admin.pdf', compact('show'));
     }
     // public function pdfmarketing($id)
 }

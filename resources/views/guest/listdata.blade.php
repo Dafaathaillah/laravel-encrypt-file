@@ -19,13 +19,11 @@
             <h6 class="m-0 font-weight-bold text-primary">List Data With Encrypt</h6>
         </div>
         <div class="table-responsive p-3">
-            <table class="table align-items-center table-flush table-hover" id="table-data">
+            <table class="table align-items-center table-flush table-hover" id="dataTableHover">
                 <thead class="thead-light">
                     <tr>
                         <th>No</th>
-                        <th>Nama Pemohon</th>
-                        <th>image</th>
-                        <th>Alamat</th>
+                        <th>Deskripsi</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -36,13 +34,7 @@
                     @foreach ($list as $lsdta)
                         <tr>
                             <td>{{ $no++ }}</td>
-                            <td>{{  Str::limit(Crypt::encryptString($lsdta->nama_pemohon), 10) }}</td>
-                            <td>
-                                {{-- <img src="{{ asset('storage').'/'.($lsdta->image_encrypt) }}" style="height: 50px; width: 100px"
-                                    alt="" class="rounded"> --}}
-                                    {{ Str::limit(Crypt::encryptString($lsdta->image_encrypt), 10) }}
-                            </td>
-                            <td>{{ Str::limit(Crypt::encryptString($lsdta->alamat), 10) }}</td>
+                            <td>{{  $lsdta->deskripsi }}</td>
                             <td>
                                 <a href="{{ route('listdatashow.guest', $lsdta->id) }}" id="btnEdit"
                                     class="btn btn-success btn-sm shadow">Detail</a>

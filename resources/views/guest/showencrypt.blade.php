@@ -43,43 +43,43 @@
                             <hr>
                             <p class="font-weight-bold">Kelas</p>
                             <hr>
-                            <p class="font-weight-bold">Jenis Barang</p>
+                            <p class="font-weight-bold">Nama Merk</p>
                             <hr>
                             <p class="font-weight-bold">Deskripsi Produk</p>
                             <hr>
-                            <p class="font-weight-bold">Nama Merk</p>
+                            <p class="font-weight-bold">Jenis Barang</p>
                             <hr>
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="">
-                            <p>{{ Str::limit(Crypt::encryptString($show->nama_pemohon), 25) }}</p>
+                            <p>{{ $show->nama_pemohon }}</p>
                             <hr>
-                            <p>{{ Str::limit(Crypt::encryptString($show->tanggal_pengajuan), 25) }}</p>
+                            <p>{{ $show->tanggal_pengajuan }}</p>
                             <hr>
-                            <p>{{ Str::limit(Crypt::encryptString($show->alamat), 25) }}</p>
+                            <p>{{ $show->alamat }}</p>
                             <hr>
                             <p>{{ Str::limit(Crypt::encryptString($show->image_encrypt), 25) }}</p>
                             <hr>
-                            <p>{{ Str::limit(Crypt::encryptString($show->kota), 25) }}</p>
+                            <p>{{ $show->kota }}</p>
                             <hr>
-                            <p>{{ Str::limit(Crypt::encryptString($show->provinsi), 25) }}</p>
+                            <p>{{ $show->provinsi }}</p>
                             <hr>
-                            <p>{{ Str::limit(Crypt::encryptString($show->fax), 25) }}</p>
+                            <p>{{ $show->fax }}</p>
                             <hr>
-                            <p>{{ Str::limit(Crypt::encryptString($show->email), 25) }}</p>
+                            <p>{{ $show->email }}</p>
                             <hr>
-                            <p>{{ Str::limit(Crypt::encryptString($show->kodepos), 25) }}</p>
+                            <p>{{ $show->kodepos }}</p>
                             <hr>
                             <p>{{ Str::limit(Crypt::encryptString($show->warna), 25) }}</p>
                             <hr>
-                            <p>{{ Str::limit(Crypt::encryptString($show->deskripsi), 25) }}</p>
+                            <p>{{ $show->deskripsi }}</p>
                             <hr>
                             <p>{{ Str::limit(Crypt::encryptString($show->merk), 25) }}</p>
                             <hr>
-                            <p>{{ Str::limit(Crypt::encryptString($show->kelas), 25) }}</p>
+                            <p>{{ $show->kelas }}</p>
                             <hr>
-                            <p>{{ Str::limit(Crypt::encryptString($show->jenis), 25) }}</p>
+                            <p>{{ $show->jenis }}</p>
                             <hr>
                         </div>
                     </div>

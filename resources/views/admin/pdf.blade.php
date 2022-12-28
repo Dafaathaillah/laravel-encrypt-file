@@ -37,15 +37,14 @@
                 <strong class="pull-right">{{ $show->alamat }}</strong>
             </div>
          </div>
-         {{-- <div class="row mt-3">
+         <div class="row mt-3">
             <div class="clearfix col-md-6 ">
                 <span class="pull-left">Image</span>
             </div>
             <div class="clearfix col-md-6 ">
-                <strong class="pull-right">{{ strtoupper($show->nama_pemohon) }}</strong>
-                <img src="{{ storage_path($show->image_encrypt) }}" alt="">
+                <img src="{{ public_path('/storage/'.$show->image_encrypt) }}" style="width: 150px;height: 50px" alt="">
             </div>
-         </div> --}}
+         </div>
          <div class="row mt-3">
             <div class="clearfix col-md-6 ">
                 <span class="pull-left">Kab/Kota</span>
