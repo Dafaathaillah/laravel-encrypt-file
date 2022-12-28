@@ -86,7 +86,7 @@
                          </div>
                      </div>
                      <div class="col-auto">
-                         <i class="fas fa-users fa-2x text-info"></i>
+                         <i class="fas fa-user fa-2x text-info"></i>
                      </div>
                  </div>
              </div>
