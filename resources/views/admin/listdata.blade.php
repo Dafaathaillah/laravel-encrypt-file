@@ -26,8 +26,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Pemohon</th>
-                        <th>image</th>
-                        <th>Alamat</th>
+                        <th>Deskripsi</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -45,11 +44,7 @@
                                 {{-- <td>{{ $lsdta->id }}</td> --}}
                                 <td>{{ $no++ }}</td>
                                 <td>{{ Str::limit($lsdta->nama_pemohon, 10) }}</td>
-                                <td>
-                                    <img src="{{ asset('storage') . '/' . $lsdta->image_encrypt }}"
-                                        style="height: 50px; width: 100px" alt="" class="rounded">
-                                </td>
-                                <td>{{ Str::limit($lsdta->alamat, 10) }}</td>
+                                <td>{{ Str::limit($lsdta->deskripsi, 30) }}</td>
                                 <td>
                                     @if (auth()->user()->role == 'user')
                                         <a href="javascript:void(0)" id="btnEdit" data-id="{{ $lsdta->id }}"
